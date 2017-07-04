@@ -24,4 +24,9 @@ public class Order {
     public List<LineItem> getLineItems() {
         return lineItems;
     }
+
+    void printCustomerInfo(StringBuilder output) {
+        output.append(customerName);
+        output.append(customerAddress);
+    }
 }

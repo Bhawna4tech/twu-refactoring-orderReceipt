@@ -17,22 +17,24 @@ public class OrderReceipt {
     public String printReceipt() {
         StringBuilder output = new StringBuilder();
 
-        // print headers
         output.append("======Printing Orders======\n");
 
-        // print date, bill no, customer name
-//        output.append("Date - " + order.getDate();
-        appendCustomerInfo(output);
-//        output.append(order.getCustomerLoyaltyNumber());
-
-        // prints lineItems
-        appendLineItemInfo(output);
+        order.printCustomerInfo(output);
+        printLineItemInfo(output);
         return output.toString();
     }
 
-    private void appendLineItemInfo(StringBuilder output) {
-        double totalSalesTax = 0d;
-        double totalAmount = 0d;
+    private void printLineItemInfo(StringBuilder output) {
+        printLineItemInfomation(output);
+
+        double totalSalesTax = getTotalSalesTax();
+        double totalAmount = getTotalAmount();
+        output.append("Sales Tax").append('\t').append(totalSalesTax);
+
+        output.append("Total Amount").append('\t').append(totalAmount);
+    }
+
+    private void printLineItemInfomation(StringBuilder output) {
         for (LineItem lineItem : order.getLineItems()) {
             output.append(lineItem.getDescription());
             output.append('\t');
@@ -43,21 +45,25 @@ public class OrderReceipt {
             output.append(lineItem.totalAmount());
             output.append('\n');
         }
+    }
 
+    private double getTotalSalesTax() {
+        double totalSalesTax = 0d;
+        for (LineItem lineItem : order.getLineItems()) {
+            double salesTax = lineItem.totalAmount() * TAX_RATE;
+            totalSalesTax += salesTax;
+        }
+        return totalSalesTax;
+    }
+
+    private double getTotalAmount() {
+        double totalSalesTax = 0d;
+        double totalAmount = 0d;
         for (LineItem lineItem : order.getLineItems()) {
             double salesTax = lineItem.totalAmount() * TAX_RATE;
             totalSalesTax += salesTax;
             totalAmount += lineItem.totalAmount() + salesTax;
         }
-        // prints the state tax
-        output.append("Sales Tax").append('\t').append(totalSalesTax);
-
-        // print total amount
-        output.append("Total Amount").append('\t').append(totalAmount);
-    }
-
-    private void appendCustomerInfo(StringBuilder output) {
-        output.append(order.getCustomerName());
-        output.append(order.getCustomerAddress());
+        return totalAmount;
     }
 }

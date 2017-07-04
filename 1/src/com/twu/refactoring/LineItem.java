@@ -5,21 +5,21 @@ public class LineItem {
 	private double price;
 	private int quantity;
 
-	public LineItem(String description, double price, int quantity) {
+	LineItem(String description, double price, int quantity) {
 		this.description = description;
 		this.price = price;
 		this.quantity = quantity;
 	}
 
-	public String getDescription() {
+	String getDescription() {
 		return description;
 	}
 
-	public double getPrice() {
+	double getPrice() {
 		return price;
 	}
 
-	public int getQuantity() {
+	int getQuantity() {
 		return quantity;
 	}
 

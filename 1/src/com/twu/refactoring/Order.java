@@ -14,7 +14,7 @@ public class Order {
         this.lineItems = lineItems;
     }
 
-    String printCustomerInfo() {
+    String getCustomerInfo() {
         return customerName + customerAddress;
     }
 
@@ -28,7 +28,7 @@ public class Order {
         return lineItems.stream().mapToDouble(LineItem::totalAmount).sum();
     }
 
-    String printSalesTaxAndAmount() {
+    String getSalesTaxAndAmount() {
         return "Sales Tax" + "\t" + getTax() + "Total Amount" + "\t" + getTotalAmount();
     }
 

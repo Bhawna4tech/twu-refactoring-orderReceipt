@@ -1,7 +1,5 @@
 package com.twu.refactoring;
 
-import java.io.FileOutputStream;
-
 public class OrderReceipt {
     private Order order;
 
@@ -14,9 +12,9 @@ public class OrderReceipt {
 
         output.append("======Printing Orders======\n");
 
-        output.append(order.printCustomerInfo());
+        output.append(order.getCustomerInfo());
         order.printLineItemInfomation(output);
-        output.append(order.printSalesTaxAndAmount());
+        output.append(order.getSalesTaxAndAmount());
         return output.toString();
     }
 }

@@ -14,9 +14,8 @@ public class Order {
         this.lineItems = lineItems;
     }
 
-    void printCustomerInfo(StringBuilder output) {
-        output.append(customerName);
-        output.append(customerAddress);
+    String printCustomerInfo() {
+        return customerName + customerAddress;
     }
 
     void printLineItemInfomation(StringBuilder output) {
@@ -29,9 +28,8 @@ public class Order {
         return lineItems.stream().mapToDouble(LineItem::totalAmount).sum();
     }
 
-    void printSalesTaxAndAmount(StringBuilder output) {
-        output.append("Sales Tax").append('\t').append(getTax());
-        output.append("Total Amount").append('\t').append(getTotalAmount());
+    String printSalesTaxAndAmount() {
+        return "Sales Tax" + "\t" + getTax() + "Total Amount" + "\t" + getTotalAmount();
     }
 
     private double getTax() {

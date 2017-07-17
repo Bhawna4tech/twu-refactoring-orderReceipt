@@ -14,14 +14,6 @@ public class Order {
         this.lineItems = lineItems;
     }
 
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public String getCustomerAddress() {
-        return customerAddress;
-    }
-
     void printCustomerInfo(StringBuilder output) {
         output.append(customerName);
         output.append(customerAddress);
@@ -34,23 +26,19 @@ public class Order {
     }
 
     private double getTotalSales() {
-        double sum = 0.0;
-        for (LineItem lineItem : lineItems) {
-            double v = lineItem.totalAmount();
-            sum += v;
-        }
-        return sum;
+        return lineItems.stream().mapToDouble(LineItem::totalAmount).sum();
     }
 
     void printSalesTaxAndAmount(StringBuilder output) {
-        double totalSalesTax = getTotalSales() * TAX_RATE;
-        double totalAmount = getTotalAmount();
+        output.append("Sales Tax").append('\t').append(getTax());
+        output.append("Total Amount").append('\t').append(getTotalAmount());
+    }
 
-        output.append("Sales Tax").append('\t').append(totalSalesTax);
-        output.append("Total Amount").append('\t').append(totalAmount);
+    private double getTax() {
+        return getTotalSales() * TAX_RATE;
     }
 
     private double getTotalAmount() {
-        return (1 + (TAX_RATE)) * getTotalSales();
+        return getTax() + getTotalSales();
     }
 }

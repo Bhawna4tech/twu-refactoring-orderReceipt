@@ -18,7 +18,7 @@ public class Order {
         return customerName + customerAddress;
     }
 
-    String printLineItemInfomation() {
+    String getLineItemInfomation() {
         String lineItemInfo = "";
         for (LineItem lineItem : lineItems) {
             lineItemInfo += lineItem.getInformation();

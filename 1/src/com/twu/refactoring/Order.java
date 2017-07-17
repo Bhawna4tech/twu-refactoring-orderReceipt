@@ -18,10 +18,12 @@ public class Order {
         return customerName + customerAddress;
     }
 
-    void printLineItemInfomation(StringBuilder output) {
+    String printLineItemInfomation() {
+        String lineItemInfo = "";
         for (LineItem lineItem : lineItems) {
-            lineItem.printInformation(output);
+            lineItemInfo += lineItem.getInformation();
         }
+        return lineItemInfo;
     }
 
     private double getTotalSales() {

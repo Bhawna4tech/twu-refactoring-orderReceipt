@@ -13,7 +13,7 @@ public class OrderReceipt {
         output.append("======Printing Orders======\n");
 
         output.append(order.getCustomerInfo());
-        order.printLineItemInfomation(output);
+        output.append(order.printLineItemInfomation());
         output.append(order.getSalesTaxAndAmount());
         return output.toString();
     }
